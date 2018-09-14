@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Animated, StyleSheet, Text, View } from 'react-native';
 import { FontAwesome } from 'react-native-vector-icons';
 import { AppLoading, Asset } from 'expo';
 import {
@@ -9,6 +9,10 @@ import {
 
 import FirstScreen from './FirstScreen';
 import SecondScreen from './SecondScreen';
+import SearchScreen from './SearchScreen';
+
+import { useScreens } from 'react-native-screens';
+useScreens();
 
 const StackOne = createStackNavigator(
   {
@@ -39,7 +43,7 @@ const StackTwo = createStackNavigator(
   },
   {
     initialRouteName: 'Second',
-    headerTransitionPreset: 'fade-in-place',
+    headerTransitionPreset: 'uikit',
   }
 );
 
@@ -54,10 +58,26 @@ StackTwo.navigationOptions = {
   ),
 };
 
-const Navigation = createBottomTabNavigator({
+const BottomTabs = createBottomTabNavigator({
   tabOne: StackOne,
   tabTwo: StackTwo,
 });
+
+const Navigation = createStackNavigator(
+  {
+    BottomTabs,
+    Search: SearchScreen,
+  },
+  {
+    headerMode: 'none',
+    transitionConfig: () => ({
+      transitionSpec: {
+        duration: 0,
+        timing: Animated.timing,
+      },
+    }),
+  }
+);
 
 export default class App extends React.Component {
   state = {
