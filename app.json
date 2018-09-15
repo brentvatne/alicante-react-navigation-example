@@ -5,7 +5,10 @@
     "slug": "RnExample",
     "privacy": "public",
     "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,8 +22,5 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    }
   }
 }
